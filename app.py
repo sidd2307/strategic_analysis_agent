@@ -1,7 +1,7 @@
 import streamlit as st
-from crewai import Agent, Task, Crew, Process
+from crewai import Agent, Task, Crew, Process, LLM
 from crewai.tools import BaseTool # Import the base class
-from langchain_groq import ChatGroq
+# from langchain_groq import ChatGroq
 # from langchain_community.tools import DuckDuckGoSearchRun
 # from crewai_tools import DuckDuckGoSearchRunTool
 # from crewai_tools import DuckDuckGoSearchTool
@@ -58,9 +58,15 @@ if analyze_button:
         try:
             # Initialize Models (Free on Groq)
             # 70B for the deep thinking, 8B for the quick tasks
-            llm_70b = ChatGroq(temperature=0, groq_api_key=os.environ.get("GROQ_API_KEY"), model_name="groq/llama-3.3-70b-versatile")
+            # llm_70b = ChatGroq(temperature=0, groq_api_key=os.environ.get("GROQ_API_KEY"), model_name="groq/llama-3.3-70b-versatile")
             # llm_8b = ChatGroq(temperature=0, groq_api_key=os.environ.get("GROQ_API_KEY"), model_name="groq/llama-3.1-8b-instant")
-            
+            # In your analyze_button block:
+            llm_70b = LLM(
+                model="groq/llama-3.3-70b-versatile",
+                temperature=0,
+                api_key=os.environ.get("GROQ_API_KEY") # CrewAI LLM uses 'api_key'
+            )
+
             # search_tool = DuckDuckGoSearchTool()
             # Initialize the custom tool
             search_tool = MySearchTool()

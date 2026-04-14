@@ -10,10 +10,8 @@ import yfinance as yf
 
 import os
 
-# The 'Bulletproof' way to set it for the whole system
-
-# Also set this for LiteLLM specifically (it's a common quirk)
-os.environ["LITELLM_LOGGING"] = "False"
+if "GROQ_API_KEY" in st.secrets:
+    os.environ["GROQ_API_KEY"] = st.secrets["GROQ_API_KEY"]
 
 # --- CUSTOM TOOL DEFINITION ---
 class MySearchTool(BaseTool):

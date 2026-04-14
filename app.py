@@ -11,7 +11,6 @@ import yfinance as yf
 import os
 
 # The 'Bulletproof' way to set it for the whole system
-os.environ["GROQ_API_KEY"] = "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"
 
 # Also set this for LiteLLM specifically (it's a common quirk)
 os.environ["LITELLM_LOGGING"] = "False"
